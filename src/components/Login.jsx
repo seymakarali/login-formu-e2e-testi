@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './Login.css';
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{8,}$/;
@@ -10,7 +11,8 @@ function Login() {
   const [password, setPassword] = useState('');
   const [terms, setTerms] = useState(false);
 
-  const emailError = email && !emailRegex.test(email) ? 'Geçerli bir email adresi giriniz.' : '';
+  const emailError =
+    email && !emailRegex.test(email) ? 'Geçerli bir email adresi giriniz.' : '';
   const passwordError =
     password && !passwordRegex.test(password)
       ? 'Şifre en az 8 karakter, 1 büyük harf, 1 rakam ve 1 özel karakter içermelidir.'
@@ -25,10 +27,10 @@ function Login() {
   }
 
   return (
-    <div>
+    <div className="login-container">
       <h1>Login</h1>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="form-group">
           <label htmlFor="email">Email</label>
           <input
             id="email"
@@ -37,10 +39,14 @@ function Login() {
             onChange={(e) => setEmail(e.target.value)}
             placeholder="email@example.com"
           />
-          {emailError && <p data-testid="email-error">{emailError}</p>}
+          {emailError && (
+            <p className="error-message" data-testid="email-error">
+              {emailError}
+            </p>
+          )}
         </div>
 
-        <div>
+        <div className="form-group">
           <label htmlFor="password">Şifre</label>
           <input
             id="password"
@@ -49,10 +55,14 @@ function Login() {
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Şifrenizi giriniz"
           />
-          {passwordError && <p data-testid="password-error">{passwordError}</p>}
+          {passwordError && (
+            <p className="error-message" data-testid="password-error">
+              {passwordError}
+            </p>
+          )}
         </div>
 
-        <div>
+        <div className="terms-group">
           <input
             id="terms"
             type="checkbox"
@@ -62,7 +72,7 @@ function Login() {
           <label htmlFor="terms">Şartları kabul ediyorum</label>
         </div>
 
-        <button type="submit" disabled={!isValid}>
+        <button className="submit-btn" type="submit" disabled={!isValid}>
           Giriş Yap
         </button>
       </form>
