@@ -1,16 +1,47 @@
-# React + Vite
+# Login Formu E2E Testi
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React ile yazılmış, Cypress E2E testleri içeren bir login formu uygulaması.
 
-Currently, two official plugins are available:
+## Özellikler
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Email, şifre ve şartları kabul et alanlarından oluşan login formu
+- Form validasyonları: geçerli email, güçlü şifre, zorunlu checkbox
+- Tüm validasyonlar geçildiğinde buton aktif olur
+- Başarılı girişte Success sayfasına yönlendirme
+- Cypress ile yazılmış E2E testler
 
-## React Compiler
+## Gereksinimler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Node.js v18 veya üzeri
 
-## Expanding the ESLint configuration
+## Kurulum
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm install
+```
+
+## Çalıştırma
+
+```bash
+npm run dev
+```
+
+Tarayıcıda `http://localhost:5173` adresini aç.
+
+**Test için geçerli şifre formatı:** En az 8 karakter, 1 büyük harf, 1 rakam, 1 özel karakter (örn: `Test123!`)
+
+## Testleri Çalıştırma
+
+Önce dev server'ı başlat:
+
+```bash
+npm run dev
+```
+
+Yeni bir terminalde Cypress'i aç:
+
+```bash
+npx cypress open
+```
+
+Açılan pencerede: E2E Testing → Electron → `login.cy.js`
